@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GameBoy</title>
+    <style type="text/css">
+    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{margin:0;padding:0;}
+    .iblk{display:-moz-inline-stack;display:inline-block; *display:inline;*zoom:1;}
+    html,body{background:#C7EEF8;font:normal 12px/1.5 Arial, Helvetica, sans-serif;overflow:hidden;}
+    table{table-layout:fixed;display:table;}
+    table tr{display:table-row;}
+    .tetcontainer{margin:17px auto 0 17px;width:450px;}
+    .tetbox{width:275px;height:500px;float:left;}
+    .tetapp{width:154px;float:right;}
+    .tetpre{width:150px;height:150px;margin:0 auto 20px;}
+    .tetbox,.tetpre{background:url(images/boxbg.gif) repeat 0 0;position:relative;}
+    .tetdata{border:#EEFAFD 3px double;margin-bottom:20px;}
+    .tetprmt{border:#98D8E8 1px solid;margin-bottom:14px;}
+    .rt{width:100%;}
+    .rb{width:100%;_overflow:hidden;}
+    .tetdata .rt{height:5px;}
+    .tetdata .rb{height:6px;}
+    .tetprmt .rt{height:3px;}
+    .tetprmt .rb{height:4px;}
+    .tetdata .rt span,.tetdata .rb span,.tetprmt .rt span,.tetprmt .rb span{display:block;background-image:url(images/round.png);background-repeat:no-repeat;_display:inline;_font-size:0; *position:relative;}
+    .tetdata .rt span{width:6px;height:5px;}
+    .tetdata .rb span{width:6px;height:6px;}
+    .tetprmt .rt span{width:4px;height:3px;}
+    .tetprmt .rb span{width:4px;height:4px;}
+    .tetdata .rtl{float:left;background-position:0 0;margin:-3px 0 0 -3px;}
+    .tetdata .rtr{float:right;background-position:-5px 0;margin:-3px -3px 0 0;}
+    .tetdata .rbl{float:left;background-position:0 -5px;margin:3px 0 0 -3px;}
+    .tetdata .rbr{float:right;background-position:-5px -5px;margin:3px -3px 0 0;}
+    .tetprmt .rtl{float:left;background-position:-38px 0;margin:-1px 0 0 -1px;}
+    .tetprmt .rtr{float:right;background-position:-41px 0;margin:-1px -1px 0 0;}
+    .tetprmt .rbl{float:left;background-position:-38px -3px;margin:1px 0 0 -1px;}
+    .tetprmt .rbr{float:right;background-position:-41px -3px;margin:1px -1px 0 0;}
+    .rit{height:3px;font-size:0;}
+    .rit span{width:3px;height:3px;display:block;background-image:url(images/round.png);background-repeat:no-repeat;}
+    .tetdata .ril{float:left;background-position:-18px 0;}
+    .tetdata .rir{float:right;background-position:-16px 0;}
+    .tetprmt .ril{float:left;background-position:-50px 0;}
+    .tetprmt .rir{float:right;background-position:-52px 0;}
+    .gap{height:11px;font-size:0;background:url(images/round.png) repeat-x 0 -21px;padding-bottom:3px;}
+    .gap span{display:block;_display:inline;width:4px;height:11px;background-image:url(images/round.png);background-repeat:no-repeat;_position:relative;}
+    .gapl{float:left;margin-left:-1px;background-position:-26px 0;}
+    .gapr{float:right;margin-right:-1px;background-position:-29px 0;}
+    .tetdata h2,.tetprmt h2{height:16px;line-height:16px;line-height:18px\9;padding:0 4px 1px;_overflow:hidden;font-size:12px;font-weight:400;}
+    .tetdata h2{margin-top:-5px;background:#EEFAFD;color:#F93;}
+    .tetprmt h2{margin-top:-4px;background:#98D8E8;color:#4C9AB0;}
+    .score{width:128px;margin:0 auto;padding-top:2px;text-align:center;font-size:0;}
+    .score span{width:16px;height:21px;background-image:url(images/round.png);background-repeat:no-repeat;}
+    .n0{background-position:0 -42px;}
+    .n1{background-position:-16px -42px;}
+    .n2{background-position:-32px -42px;}
+    .n3{background-position:-48px -42px;}
+    .n4{background-position:0 -63px;}
+    .n5{background-position:-16px -63px;}
+    .n6{background-position:-32px -63px;}
+    .n7{background-position:-48px -63px;}
+    .n8{background-position:0 -84px;}
+    .n9{background-position:-16px -84px;}
+    .rotate{width:132px;height:21px;margin:0 auto;}
+    .rotate a{display:block;text-indent:-9999px;width:55px;height:21px;background-image:url(images/round.png);background-repeat:no-repeat;}
+    .rtal{float:left;background-position:0 -148px;}
+    .rtar{float:right;background-position:0 -169px;}
+    .rtal1{float:left;background-position:0 -228px;}
+    .rtar1{float:right;background-position:0 -249px;}
+    .speed{width:150px;height:56px;}
+    .speed a{display:block;font-weight:700;font-size:18px;text-align:center;color:#D9EAEF;width:24px;height:23px;line-height:22px;float:left;margin:2px 3px 3px;_display:inline;background:url(images/round.png) no-repeat 0 -115px;text-decoration:none;cursor:default;}
+    .speed a.spdcur{background:url(images/round.png) no-repeat -34px -115px;color:#FFF;cursor:default;}
+    .btns{clear:both;margin-top:10px;font-size:0;text-align:center;}
+    .btnc{padding-right:4px;height:25px;background:url(images/round.png) no-repeat right -87px;line-height:25px;font-size:15px;font-weight:700;font-family:"Arial Unicode MS";color:#FFF;text-decoration:none;cursor:pointer;margin:0 3px;}
+    .btnc span{display:block;padding-left:4px;height:25px;background:url(images/round.png) no-repeat -57px -87px;float:left;}
+    .btnc ins{text-decoration:none;display:block;padding:0 10px;height:25px;background:url(images/round.png) repeat-x 0 -200px;float:left;}
+    td{padding:0px;margin:0px;}
+    .main_cell{width:25px;height:25px;overflow:hidden;display:table-cell;}
+    .main_cell_on_1,.main_cell_on_2,.main_cell_on_3,.main_cell_on_4,.main_cell_on_5,.main_cell_on_6,.main_cell_on_7,.main_cell_on_8,.main_cell_on_special,.main_cell_on_specialed{background-color:green;width:25px;height:25px;overflow:hidden;background-image:url(images/tetris.gif);background-repeat:no-repeat;display:table-cell;}
+    .main_cell_on_2{background-position:-25px 0px;}
+    .main_cell_on_3{background-position:-50px 0px;}
+    .main_cell_on_4{background-position:-75px 0px;}
+    .main_cell_on_5{background-position:-100px 0px;}
+    .main_cell_on_6{background-position:-125px 0px;}
+    .main_cell_on_7{background-position:-150px 0px;}
+    .main_cell_on_8{background-position:-175px 0px;}
+    .main_cell_on_special{background-image:url(images/special.gif);}
+    .main_cell_on_specialed{background-image:url(images/specialed.gif);}
+    .style1{color:#FF0000;}
+    </style>
+</head>
+<body>
+    <div class="tetcontainer" id="_loadingpanel">
+        游戏机载入中，请稍后...</div>
+    <div class="tetcontainer" id="_mainpanel" style="float:left; display:none;">
+        <div class="tetbox" id="main">
+        </div>
+        <div class="tetapp">
+            <div class="tetpre" id="next">
+            </div>
+            <div class="tetdata">
+                <div class="rt">
+                    <span class="rtl"></span><span class="rtr"></span>
+                </div>
+                <div>
+                    <h2>
+                        总分</h2>
+                    <div class="rit">
+                        <span class="ril"></span><span class="rir"></span>
+                    </div>
+                    <div class="score" id="score">
+                        <span class="iblk n0"></span>
+                    </div>
+                </div>
+                <div class="rb">
+                    <span class="rbl"></span><span class="rbr"></span>
+                </div>
+            </div>
+            <div class="tetprmt">
+                <div class="rt">
+                    <span class="rtl"></span><span class="rtr"></span>
+                </div>
+                <div>
+                    <h2>
+                        旋转</h2>
+                    <div class="rit">
+                        <span class="ril"></span><span class="rir"></span>
+                    </div>
+                    <div class="rotate" id="rotate">
+                        <a>顺时针</a><a>逆时针</a></div>
+                </div>
+                <div class="rb">
+                    <span class="rbl"></span><span class="rbr"></span>
+                </div>
+            </div>
+            <div class="tetprmt">
+                <div class="rt">
+                    <span class="rtl"></span><span class="rtr"></span>
+                </div>
+                <div>
+                    <h2>
+                        速度</h2>
+                    <div class="rit">
+                        <span class="ril"></span><span class="rir"></span>
+                    </div>
+                    <div class="speed" id="speed">
+                    </div>
+                </div>
+                <div class="rb">
+                    <span class="rbl"></span><span class="rbr"></span>
+                </div>
+            </div>
+            <div class="tetprmt">
+                <div class="rt">
+                    <span class="rtl"></span><span class="rtr"></span>
+                </div>
+                <div>
+                    <h2>
+                        级别</h2>
+                    <div class="rit">
+                        <span class="ril"></span><span class="rir"></span>
+                    </div>
+                    <div class="score" id="startlevel">
+                        <span class="iblk n0"></span>
+                    </div>
+                </div>
+                <div class="rb">
+                    <span class="rbl"></span><span class="rbr"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tetcontainer" style="float:left;">
+        <span class="style1">注意：该游戏机不支持鼠标操作！！！<br />
+        </span>
+        <br />
+        游戏机说明：<br />
+        &nbsp;&nbsp;&nbsp; 该游戏机内置了多款游戏，相同游戏的多个版本，再现儿时快乐时光<br />
+        <br />
+        按按键说明：<br />
+&nbsp;&nbsp;&nbsp; 该游戏机同一功能均使用多个按键实现，您可以选择自己喜欢的按键<br />
+        &nbsp;&nbsp;&nbsp; <span class="style1">在游戏开始前</span><br />
+        &nbsp;&nbsp;&nbsp; 游戏选择：通过按左右箭头或数字键盘4或6选择<br />
+        &nbsp;&nbsp;&nbsp; 旋转：通过按向上箭头键或数字键盘8调整<br />
+        &nbsp;&nbsp;&nbsp; 速度：通过按ctrl键调整<br />
+        &nbsp;&nbsp;&nbsp; 级别：通过向下箭头或数字键盘的2或者空格键调整<br />
+        &nbsp;&nbsp;&nbsp; 开始：回车键<br />
+        &nbsp;&nbsp;&nbsp; <span class="style1">在游戏中</span><br />
+        &nbsp;&nbsp;&nbsp; 可使用的按键同上，不同的游戏功能不一样。可以使用回车键暂停游戏</div>
+</body>
+</html>
+
+<xmp style="display:none;" id="gameboy_temp">
+<map_temp>
+    <table cellpadding="0" cellspacing="0">
+        <#for(var i=0,j=cx.size[1];i<j;i++){#>
+            <tr>
+                <#for(var z=0,y=cx.size[0];z<y;z++){#>
+                    <td id="<#=cx.id#>_cell_<#=i#>_<#=z#>" class="main_cell">&nbsp;</td>
+                <#}#>
+            </tr>
+        <#}#>
+    </table>
+</map_temp>
+<number_temp>
+    <#cx.number+='';#>
+    <#for(var i=0,j=cx.number.length;i<j;i++){#>
+        <span class="iblk n<#=cx.number.charAt(i)#>"></span>
+    <#}#>
+</number_temp>
+<speed_temp>
+    <#for(var i=1;i<=cx.speed;i++){#>
+        <a id="_speed_<#=i#>"><#=i#></a>
+    <#}#>
+</speed_temp>
+</xmp>
+<script type="text/javascript" src="./lib/Ctrl.Bootstrap.js?v=w47k4y7x3056kk3x&che=false&sis=false&fmt=#k.source.js?v=#v&cfv=guuv5z22wu6x3yxw&k=K"></script>
+<script type="text/javascript">Ctrl.using('./js/Gameboy')</script>
